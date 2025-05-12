@@ -8,19 +8,20 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-
-app.post("/events", async(req, res)=>{
-
+app.post("/events", async (req, res) => {
+  try {
     const event = req.body;
+    console.log('req.path', req.path)
+       await axios.post(`http://localhost:4000/events`, event)
+              await axios.post(`http://localhost:4001/events`, event),
+       await axios.post(`http://localhost:4002/events`, event)
 
-    await axios.post(`http://localhost:4000/events`, event)
-    await axios.post(`http://localhost:4001/events`, event)
-    // await axios.post(`http://localhost:4002/events`, event)
+    res.send({ status: "OK" });
+  } catch (error) {
+    console.log("err", error.message);
+  }
+});
 
-    res.send({status:"OK"})
-
-})
-
-app.listen(4005, ()=>{
-    console.log('listen at 4005')
-}) 
+app.listen(4005, () => {
+  console.log("listen at 4005");
+});
