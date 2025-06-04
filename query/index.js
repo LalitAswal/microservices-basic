@@ -14,7 +14,6 @@ app.get("/post", (req, res) => {
 });
 app.post("/events", (req, res) => {
   let { data, type } = req.body;
-  console.log('rea, body', req.body)
   let id = data?.id;
   let title = data?.title;
   let content = data?.content;
@@ -26,12 +25,13 @@ app.post("/events", (req, res) => {
     
     post[id] = { id, title, Comment: [] };
   }
+  console.log('{ id, content }',{ id, content })
   if (type === "CreateComment") {
     console.log("post 30", post)
     const postItem = post[postId];
     if(postItem){
-    post.Comment.push({ id, content });
-    console.log("post 33", post)
+    postItem.Comment.push({ id, content });
+    console.log("post 33", postItem)
     }
    
 

@@ -35,7 +35,6 @@ app.post("/post", async (req, res) => {
         title,
       },
     });
-    console.log(`result`, result)
     res.status(201).send({
       message: " post save successfully",
       response: {},
