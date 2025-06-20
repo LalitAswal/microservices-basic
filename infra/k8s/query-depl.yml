@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+Kind: Pod
+metaData: 
+  name: ticket-depl
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: query
+  template:
+    metadata: 
+      label:
+        app: query
+    spec:
+      containers:
+        - name: query
+          image: ms/query
